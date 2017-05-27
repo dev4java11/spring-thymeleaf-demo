@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" 
+	  xmlns:th="http://www.thymeleaf.org"
+	  layout:decorator="layout/layout"
+>
+	<div layout:fragment="content">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-md-12">
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-5">
+					<h4>Hello word</h4>
+				</div>
+				<div class="col-md-2">
+					<select class="selectpicker" data-style="btn-primary">
+						<option>1 - First</option>
+						<option>2 - Second</option>
+						<option>3 - Third</option>
+						<option>4 - Fourth</option>
+					</select>
+				</div>
+				<div class="col-md-3 form-group">
+					<div id="datetimepicker" class='input-group date'>
+						<input th:type="text" class="form-control" />
+						 <span class="input-group-addon">
+                        	<span class="glyphicon glyphicon-calendar"></span>
+                    	</span>
+					</div>
+					
+					<script type="text/javascript">
+			           
+			                $('#datetimepicker').datetimepicker();
+			            
+			        </script>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-3">
+					<input th:type="checkbox" name="checkbox" checked="checked" />
+					<script type="text/javascript">
+						$("[name='checkbox']").bootstrapSwitch();
+					</script>
+				</div>
+				<div class="col-md-3">
+					<div id="tree">
+						
+					</div>
+					<script type="text/javascript">
+						function getTree(){
+							var tree = [
+								  {
+								    text: "Parent 1",
+								    nodes: [
+								      {
+								        text: "Child 1",
+								        nodes: [
+								          {
+								            text: "Grandchild 1"
+								          },
+								          {
+								            text: "Grandchild 2"
+								          }
+								        ]
+								      },
+								      {
+								        text: "Child 2"
+								      }
+								    ]
+								  },
+								  {
+								    text: "Parent 2"
+								  },
+								  {
+								    text: "Parent 3"
+								  },
+								  {
+								    text: "Parent 4"
+								  },
+								  {
+								    text: "Parent 5"
+								  }
+								];
+							return tree;
+						}
+						$('#tree').treeview({data: getTree()});
+					</script>
+				</div>
+				<div class="col-md-3">
+					<input id="slider1" data-slider-id='ex1Slider' type="text" data-slider-min="0" data-slider-max="20" data-slider-step="1" data-slider-value="14"/>
+					<script type="text/javascript">
+						$('#slider1	').slider({
+							formatter: function(value){
+								return 'Current value: '+value;
+							}
+						});
+					</script>
+				</div>
+				<div class="col-md-3">
+					<div class="checkbox checkbox-primary">
+						<input id="checkbox1" th:type="checkbox"/>
+						<label for="checkbox1">
+					      Option 1
+					    </label>
+					</div>
+					<div class="radio">
+					 	<input th:type="radio" name="radio2" id="radio3" value="option1"></input>
+					    <label for="radio3">
+					    	One
+					   	</label>
+					</div>
+				</div>
+			</div>
+			<div>
+				<div class="col-md-3">
+					<button th:value="Notify" class="btn btn-primary" onclick="notifyBootstrap()">Boton</button>
+					<script type="text/javascript">
+						function notifyBootstrap(){
+							$.notify({
+								icon: 'fa fa-paw',
+								title: 'Bootstrap notify',
+								message: 'Hello World'
+							},{
+								animate: {
+									enter: 'animated bounceInDown',
+									exit: 'animated bounceOutUp'
+								}
+							});
+						}
+					</script>
+				</div>
+				<div class="col-md-3">
+					<label class="control-label">Select File</label>
+    				<input id="input-1" th:type="file" class="file"></input>
+    				<script type="text/javascript">
+    					$('#input-1').fileinput({
+    						language: moment().locale()
+    					});
+    				</script>
+				</div>
+				<div class="col-md-3">
+					<span th:text="${#locale.language}">Locale</span>
+					<span th:text="${#locale.displayLanguage}">locale</span>
+					<span th:text="${#locale}">locale</span>
+					<span th:text="${#locale.displayCountry}">locale</span>
+					<span th:text="${#locale.displayName}">locale</span>
+					<span th:text="${#locale.displayScript}">locale</span>
+					<span th:text="${#locale.iSO3Country}">locale</span>
+					<span th:text="${#locale.iSO3Language}">locale</span>
+					<span th:text="${#locale.toString()}">locale</span>
+					<span th:text="${#locale.toString()}">locale</span>
+				</div>
+				<div class="col-md-3">
+				
+				</div>
+			</div>
+		</div>
+	</div>
+</html>

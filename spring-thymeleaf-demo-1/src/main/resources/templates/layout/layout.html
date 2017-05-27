@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  xmlns:th="http://www.thymeleaf.org"
+	  th:lang="${#locale.language}"
+>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    	<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<title>ReacJS + Spring Data Rest</title>
+		
+		<link rel="stylesheet" th:href="@{/webjars/bootstrap/3.3.7/css/bootstrap.css}" />
+		<link rel="stylesheet" th:href="@{/webjars/font-awesome/4.7.0/css/font-awesome.css}" />
+		<link rel="stylesheet" th:href="@{/webjars/animate.css/3.5.2/animate.css}" />
+		<script type="text/javascript" th:src="@{/webjars/jquery/3.2.1/dist/jquery.js}" ></script>
+		<script type="text/javascript" th:src="@{/webjars/momentjs/2.10.3/moment.js}" ></script>
+		<script type="text/javascript" th:src="@{/webjars/momentjs/2.10.3/locale/{locale}.js(locale=${#locale.language})}" ></script>
+		<script type="text/javascript" th:src="@{/webjars/bootstrap/3.3.7/js/bootstrap.js}"></script>
+		<script type="text/javascript">
+			var locale = window.navigator.userLanguage || window.navigator.language;
+			moment().locale(locale);
+		</script>
+		
+<!-- 		CARGA EL COMPONENTE PARA EL SELECTPICKER -->
+		<link rel="stylesheet" th:href="@{/webjars/bootstrap-select/1.12.0/css/bootstrap-select.css}" />
+		<script type="text/javascript" th:src="@{/webjars/bootstrap-select/1.12.0/js/bootstrap-select.js}" ></script>
+		<script type="text/javascript" th:src="@{/webjars/bootstrap-select/1.12.0/js/i18n/defaults-{lang}.js(lang=${#locale})}" ></script>
+		
+		
+<!-- 		CARGA EL COMPONENTE PARA EL DATETIMEPICKER -->
+		<link rel="stylesheet" th:href="@{/webjars/Eonasdan-bootstrap-datetimepicker/4.17.43/css/bootstrap-datetimepicker.css}" />
+		<script type="text/javascript" th:src="@{/webjars/Eonasdan-bootstrap-datetimepicker/4.17.43/js/bootstrap-datetimepicker.js}" ></script>
+		
+<!-- 		CARGA EL COMPONENTE PARA EL SWITCHER -->
+		<link rel="stylesheet" th:href="@{/webjars/bootstrap-switch/3.3.2/css/bootstrap3/bootstrap-switch.css}" />
+		<script type="text/javascript" th:src="@{/webjars/bootstrap-switch/3.3.2/js/bootstrap-switch.js}" ></script>
+		
+<!-- 		CARGA EL COMPONENTE TREEVIEW -->
+		<link rel="stylesheet" th:href="@{/webjars/bootstrap-treeview/1.2.0/css/bootstrap-treeview.css}" />
+		<script type="text/javascript" th:src="@{/webjars/bootstrap-treeview/1.2.0/js/bootstrap-treeview.js}" ></script>
+		
+<!-- 		CARGA EL COMPONENTE NOTIFY -->
+		<script type="text/javascript" th:src="@{/webjars/bootstrap-notify/3.1.3-1/bootstrap-notify.js}" ></script>
+		
+<!-- 		CARGA EL COMPONENTE FILEINPUT -->
+		<link rel="stylesheet" th:href="@{/webjars/bootstrap-fileinput/4.3.9/css/fileinput.css}" />
+		<script type="text/javascript" th:src="@{/webjars/bootstrap-fileinput/4.3.9/js/fileinput.js}" ></script>
+		<script type="text/javascript" th:src="@{/webjars/bootstrap-fileinput/4.3.9/js/locales/{locale}.js(locale=${#locale.language})}" ></script>
+		
+<!-- 		CARGA EL COMPONENTE SLIDER -->
+		<link rel="stylesheet" th:href="@{/webjars/seiyria-bootstrap-slider/9.7.2/dist/css/bootstrap-slider.css}" />
+		<script type="text/javascript" th:src="@{/webjars/seiyria-bootstrap-slider/9.7.2/dist/bootstrap-slider.js}" ></script>
+		
+<!-- 		CARGA EL COMPONENTE CHECKBOX Y RADIO -->
+		<link rel="stylesheet" th:href="@{/webjars/awesome-bootstrap-checkbox/0.3.7/awesome-bootstrap-checkbox.css}" />
+		
+<!-- 		CARGA REACTJS -->
+		<script type="text/javascript" th:src="@{/webjars/react/15.3.2/react.js}" ></script>
+	</head>
+	
+	<body>
+		<div layout:fragment="content">
+			
+		</div>
+	</body>
+</html>

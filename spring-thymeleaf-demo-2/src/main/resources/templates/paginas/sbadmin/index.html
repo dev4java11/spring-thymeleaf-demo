@@ -5,8 +5,26 @@
 	  layout:decorator="template/layout">
 	
 	<div layout:fragment="content">
+		<input id="titulomsg" type="hidden" th:value="#{notificacion.titulo}"/>
+		<input id="descripcionmsg" type="hidden" th:value="#{notificacion.bienvenido.usuario(${#authentication.name})}" />
+		
 		<div class="row">
-			<h3 >Bienvenido usuario dd</h3>
+			
 		</div>
+	</div>
+	
+	<div layout:fragment="scripts">
+		<script type="text/javascript">
+			$(document).ready(function (){
+				$.notify({
+					
+					icon: 'fa fa-info',
+					title: $("#titulomsg").val(),
+					message: $("#descripcionmsg").val()
+				},{
+					type: "info"
+				});
+			});
+		</script>
 	</div>
 </html>

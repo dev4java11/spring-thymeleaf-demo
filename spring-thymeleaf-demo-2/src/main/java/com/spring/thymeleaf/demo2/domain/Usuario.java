@@ -5,6 +5,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.Size;
 
@@ -16,8 +18,11 @@ public class Usuario extends Entidad {
 
 	private String usuario;
 	private String clave;
+	private String uuid;
 	private Integer estado;
 	private Integer idPersona;
+	
+	private Persona persona;
 	
 	public Usuario() {
 		
@@ -43,6 +48,16 @@ public class Usuario extends Entidad {
 		this.clave = clave;
 	}
 	
+	@Column(unique = true, nullable = false)
+	@Size(max = 60)
+	public String getUuid() {
+		return uuid;
+	}
+	
+	public void setUuid(String uuid) {
+		this.uuid = uuid;
+	}
+	
 	@Column(name  = "estado")
 	public Integer getEstado() {
 		return estado;
@@ -59,5 +74,16 @@ public class Usuario extends Entidad {
 	
 	public void setIdPersona(Integer idPersona) {
 		this.idPersona = idPersona;
+	}
+	
+	
+	@OneToOne
+	@JoinColumn(name = "idPersona", referencedColumnName = "idPersona", nullable = true, insertable = false, updatable = false)
+	public Persona getPersona() {
+		return persona;
+	}
+	
+	public void setPersona(Persona persona) {
+		this.persona = persona;
 	}
 }

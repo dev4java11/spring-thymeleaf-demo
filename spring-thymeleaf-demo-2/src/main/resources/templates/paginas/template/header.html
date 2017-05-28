@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
 	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
 	  layout:decorator="template/layout">
 	
-	<div layout:fragment="header">
+	<div layout:fragment="header" >
 		<nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
 			<div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -211,12 +212,12 @@
                         <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
                     </a>
                     <ul class="dropdown-menu dropdown-user">
-                        <li><a href="#"><i class="fa fa-user fa-fw"></i> <th:block th:text="#{header.usuario.perfil}">User profile</th:block> </a>
+                        <li><a href="#" th:href="@{/sbadmin/perfil}"><i class="fa fa-user fa-fw"></i> <th:block th:text="#{header.usuario.perfil}">User profile</th:block> </a>
                         </li>
-                        <li><a href="#"><i class="fa fa-gear fa-fw"></i> <th:block th:text="#{header.usuario.configuracion}"></th:block> Settings</a>
+                        <li><a href="#"><i class="fa fa-gear fa-fw"></i> <th:block th:text="#{header.usuario.configuracion}">Settings</th:block> </a>
                         </li>
                         <li class="divider"></li>
-                        <li><a th:href="@{/logout}"><i class="fa fa-sign-out fa-fw"></i> <th:block th:text="#{header.usuario.cerrar.sesion}"></th:block> Logout</a>
+                        <li><a th:href="@{/logout}"><i class="fa fa-sign-out fa-fw"></i> <th:block th:text="#{header.usuario.cerrar.sesion}">Logout</th:block> </a>
                         </li>
                     </ul>
                     <!-- /.dropdown-user -->

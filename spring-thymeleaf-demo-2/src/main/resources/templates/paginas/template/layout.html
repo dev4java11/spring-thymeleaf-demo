@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+	  th:lang="${#locale.language}">
+	  
+<head layout:include="template/head">
+	
+</head>	
+<body>
+	<h4 th:utext="${#authentication}"></h4>
+	<div id="wrapper">
+		<div layout:include="template/header" >
+			Aqui va el header
+		</div>
+		
+		 <div id="page-wrapper">
+			<div layout:fragment="content">
+			
+			</div>
+		</div>
+		
+		<div layout:include="template/footer">
+			Aqui va el footer
+		</div>
+	</div>
+	
+	
+	<script type="text/javascript" th:src="@{/vendor/jquery/jquery.min.js}"></script>
+	<script type="text/javascript" th:src="@{/vendor/bootstrap/js/bootstrap.min.js}"></script>
+	<script type="text/javascript" th:src="@{/vendor/metisMenu/metisMenu.min.js}"></script>
+	<script type="text/javascript" th:src="@{/sbadmin/js/sb-admin-2.min.js}"></script>
+	<script type="text/javascript" th:src="@{/vendor/bootstrap-notify/js/bootstrap-notify.min.js}"></script>
+<!-- 	<script type="text/javascript" th:src="@{/custom/js/util.js}"></script> -->
+	
+	<div layout:fragment="scripts">
+	
+	</div>
+	
+</body>
+</html>

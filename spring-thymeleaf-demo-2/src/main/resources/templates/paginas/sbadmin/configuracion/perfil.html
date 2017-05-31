@@ -11,7 +11,8 @@
             </div>
 		</div>
 		<div class="row">
-			<form role="form" class="form-horizontal" th:object="${usuario}">
+			<form role="form" th:action="@{/sbadmin/perfil}" method="post" class="form-horizontal" th:object="${usuario}">
+				<p th:text="${#fields.hasAnyErrors()}">error</p>
 				<div class="col-lg-10 col-lg-offset-1">
 					<div class="panel panel-default">
 						<div class="panel-heading">
@@ -22,14 +23,20 @@
                             	<div class="col-lg-12">
                                 	<div class="form-group">
                                 		<label for="itUsuario" class="col-lg-3 control-label" th:text="#{perfil.panel.usuario.usuario}"> Usuario:</label>
-                                		<div class="col-lg-9">
-                                			<input type="text" class="form-control" id="itUsuario" th:value="*{usuario}" th:disabled="'disabled'" />
+                                		<div class="col-lg-5">
+                                			<input type="text" class="form-control" id="itUsuario" th:field="*{usuario}" th:readonly="true" />
+                                		</div>
+                                		<div class="col-lg-4">
+                                			
                                 		</div>
                                 	</div>
-                                	<div class="form-group">
+                                	<div class="form-group" th:classappend="${#fields.hasErrors('clave') ? 'has-error': ''}">
                                 		<label for="itClave" class="col-lg-3 control-label" th:text="#{perfil.panel.usuario.clave}"> Contraseña:</label>
-                                		<div class="col-lg-9">
-                                			<input type="password" class="form-control" id="itClave" th:value="*{clave}" />
+                                		<div class="col-lg-5">
+                                			<input type="password" th:name="clave" class="form-control" id="itClave" th:value="*{clave}" />
+                                		</div>
+                                		<div class="col-lg-4">
+                                			<p th:if="${#fields.hasErrors('clave')}" th:errors="*{clave}">Clave incorrecta</p>
                                 		</div>
                                 	</div>
                                 </div>
@@ -45,35 +52,50 @@
 						<div class="panel-body">
 	                    	<div class="row">
 	                        	<div class="col-lg-12">
-	                            	<div class="form-group">
-	                               		<label for="itNombre" class="col-lg-3 control-label" th:text="#{perfil.panel.persona.nombre}"> Nombres:</label>
-	                                	<div class="col-lg-9">
-	                                		<input type="text" class="form-control" id="itNombre" th:value="*{persona.nombre}"  />
+	                            	<div class="form-group" th:classappend="${#fields.hasErrors('persona.nombre') ? 'has-error': ''}">
+	                               		<label for="itNombre" class="col-lg-3 control-label" th:text="#{perfil.panel.persona.nombre}">Nombres:</label>
+	                                	<div class="col-lg-5">
+	                                		<input type="text" class="form-control" id="itNombre" th:field="*{persona.nombre}"  />
 	                                	</div>
+	                                	<div class="col-lg-4" th:if="${#fields.hasErrors('persona.nombre')}">
+                                			<p th:if="${#fields.hasErrors('persona.nombre')}" th:errors="*{persona.nombre}">Nombre incorrecto</p>
+                                		</div>
 	                                </div>
-	                                <div class="form-group">
-	                               		<label for="itApPaterno" class="col-lg-3 control-label" th:text="#{perfil.panel.persona.apPaterno}"> Apellido Paterno:</label>
-	                                	<div class="col-lg-9">
-	                                		<input type="text" class="form-control" id="itApPaterno" th:value="*{persona.apPaterno}" />
+	                                <div class="form-group" th:classappend="${#fields.hasErrors('persona.apPaterno') ? 'has-error': ''}">
+	                               		<label for="itApPaterno" class="col-lg-3 control-label" th:text="#{perfil.panel.persona.apPaterno}">Apellido Paterno:</label>
+	                                	<div class="col-lg-5">
+	                                		<input type="text" class="form-control" id="itApPaterno" th:field="*{persona.apPaterno}" />
 	                                	</div>
+	                                	<div class="col-lg-4">
+                                			<p th:if="${#fields.hasErrors('persona.apPaterno')}" th:errors="*{persona.apPaterno}">Apellido Paterno incorrecto</p>
+                                		</div>
 	                                </div>
-	                                <div class="form-group">
-	                               		<label for="itApMaterno" class="col-lg-3 control-label" th:text="#{perfil.panel.persona.apMaterno}"> Apellido Materno:</label>
-	                                	<div class="col-lg-9">
-	                                		<input type="text" class="form-control" id="itApMaterno" th:value="*{persona.apMaterno}"  />
+	                                <div class="form-group" th:classappend="${#fields.hasErrors('persona.apMaterno') ? 'has-error': ''}">
+	                               		<label for="itApMaterno" class="col-lg-3 control-label" th:text="#{perfil.panel.persona.apMaterno}">Apellido Materno:</label>
+	                                	<div class="col-lg-5">
+	                                		<input type="text" class="form-control" id="itApMaterno" th:field="*{persona.apMaterno}"  />
 	                                	</div>
+	                                	<div class="col-lg-4">
+                                			<p th:if="${#fields.hasErrors('persona.apMaterno')}" th:errors="*{persona.apMaterno}">Apellido Paterno incorrecto</p>
+                                		</div>
 	                                </div>
-	                                <div class="form-group">
+	                                <div class="form-group" th:classappend="${#fields.hasErrors('persona.documento') ? 'has-error': ''}">
 	                               		<label for="itDocumento" class="col-lg-3 control-label" th:text="#{perfil.panel.persona.documento}"> Documento de Identidad:</label>
-	                                	<div class="col-lg-9">
-	                                		<input type="text" class="form-control" id="itDocumento" th:value="*{persona.documento}"  />
+	                                	<div class="col-lg-5">
+	                                		<input type="text" class="form-control" id="itDocumento" th:field="*{persona.documento}"  />
 	                                	</div>
+	                                	<div class="col-lg-4">
+                                			<p th:if="${#fields.hasErrors('persona.documento')}" th:errors="*{persona.documento}">Documento incorrecto</p>
+                                		</div>
 	                                </div>
-	                                <div class="form-group">
+	                                <div class="form-group" th:classappend="${#fields.hasErrors('persona.email') ? 'has-error': ''}">
 	                               		<label for="itEmail" class="col-lg-3 control-label" th:text="#{perfil.panel.persona.email}"> Documento de Identidad:</label>
-	                                	<div class="col-lg-9">
-	                                		<input type="text" class="form-control" id="itEmail" th:value="*{persona.email}" />
+	                                	<div class="col-lg-5">
+	                                		<input type="text" class="form-control" id="itEmail" th:field="*{persona.email}" />
 	                                	</div>
+	                                	<div class="col-lg-4">
+                                			<p th:if="${#fields.hasErrors('persona.email')}" th:errors="*{persona.email}">Email incorrecto</p>
+                                		</div>
 	                                </div>
 	                           	</div>
 	                    	</div>

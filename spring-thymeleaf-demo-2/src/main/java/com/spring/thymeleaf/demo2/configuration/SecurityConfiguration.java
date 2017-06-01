@@ -21,7 +21,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 	
 	@Override
 	public void configure(WebSecurity web) throws Exception {
-		web.ignoring().antMatchers("/sbadmin2/**", "/vendor/**");
+		web.ignoring().antMatchers("/sbadmin2/**", "/vendor/**", "/h2-console/**");
 	}
 	
 	@Override

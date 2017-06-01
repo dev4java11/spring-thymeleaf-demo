@@ -81,6 +81,18 @@
                                 			<p th:if="${#fields.hasErrors('persona.apMaterno')}" th:errors="*{persona.apMaterno}">Apellido Paterno incorrecto</p>
                                 		</div>
 	                                </div>
+	                               	<div class="form-group" th:classappend="${#fields.hasErrors('persona.genero') ? 'has-error': ''}">
+	                               		<label for="itGenero" class="col-lg-3 control-label" th:text="#{perfil.panel.persona.genero}">Género:</label>
+	                                	<div class="col-lg-5">
+	                                		<select th:field="*{persona.genero}" class="selectpicker form-control">
+	                                			<option th:value="#{persona.genero.masculino.clave}" th:text="#{persona.genero.masculino.valor}" th:selected="*{persona.genero} == #{persona.genero.masculino.clave}">Masculino</option>
+	                                			<option th:value="#{persona.genero.femenino.clave}" th:text="#{persona.genero.femenino.valor}" th:selected="*{persona.genero} == #{persona.genero.femenino.clave}">Femenino</option>
+	                                		</select>
+	                                	</div>
+	                                	<div class="col-lg-4">
+                                			<p th:if="${#fields.hasErrors('persona.genero')}" th:errors="*{persona.genero}">Genero incorrecto</p>
+                                		</div>
+	                                </div>
 	                                <div class="form-group" th:classappend="${#fields.hasErrors('persona.documento') ? 'has-error': ''}">
 	                               		<label for="itDocumento" class="col-lg-3 control-label" th:text="#{perfil.panel.persona.documento}"> Documento de Identidad:</label>
 	                                	<div class="col-lg-5">
@@ -131,6 +143,7 @@
 			function responseOk(response){
 				var $result = $(response).find('#formActualizarUsuario');
 				$("#formActualizarUsuario").html($result.html());
+				inicializarCombos();
 				notificar($('#msjActualizarUsuarioOk').val(), 'info');
 			}
 			
@@ -144,6 +157,10 @@
 				},{
 					type: tipo
 				});
+			}
+			
+			function inicializarCombos(){
+				$('.selectpicker').selectpicker();
 			}
 			
 		</script>

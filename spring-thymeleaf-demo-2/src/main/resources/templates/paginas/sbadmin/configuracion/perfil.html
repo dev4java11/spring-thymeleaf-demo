@@ -11,8 +11,10 @@
             </div>
 		</div>
 		<div class="row">
-			<form role="form" th:action="@{/sbadmin/perfil}" method="post" class="form-horizontal" th:object="${usuario}">
-				<p th:text="${#fields.hasAnyErrors()}">error</p>
+			<input id="msjActualizarUsuarioOk" type="hidden" th:value="#{mensaje.actualizar.usuario.correcto}" />
+			<input id="msjActualizarUsuarioError" type="hidden" th:value="#{mensaje.actualizar.usuario.error}" />
+			
+			<form id="formActualizarUsuario" role="form" th:action="@{/sbadmin/perfil}" method="post" class="form-horizontal" th:object="${usuario}">
 				<div class="col-lg-10 col-lg-offset-1">
 					<div class="panel panel-default">
 						<div class="panel-heading">
@@ -110,6 +112,40 @@
 	</div>
 	
 	<div layout:fragment="scripts">
-		
+		<script type="text/javascript">
+			$(document).ready(function (){
+				
+			});
+			
+			$('#formActualizarUsuario').submit(function (event){
+				event.preventDefault();
+				var $form = $(this);
+				var data = $form.serialize();
+				var url = $form.attr("action");
+				
+				var post = $.post(url, data);
+				post.done(responseOk);
+				post.fail(responseError);
+			});
+			
+			function responseOk(response){
+				var $result = $(response).find('#formActualizarUsuario');
+				$("#formActualizarUsuario").html($result.html());
+				notificar($('#msjActualizarUsuarioOk').val(), 'info');
+			}
+			
+			function responseError(){
+				notificar($('#msjActualizarUsuarioError').val(), 'danger');
+			}
+			
+			function notificar(mensaje, tipo){
+				$.notify({
+					message: mensaje
+				},{
+					type: tipo
+				});
+			}
+			
+		</script>
 	</div>
 </html>

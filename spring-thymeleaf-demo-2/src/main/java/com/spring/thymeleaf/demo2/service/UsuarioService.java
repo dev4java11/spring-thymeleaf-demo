@@ -5,4 +5,6 @@ import com.spring.thymeleaf.demo2.domain.Usuario;
 public interface UsuarioService {
 
 	public Usuario obtenerPorId(String idUsuario);
+	
+	public Usuario actualizarUsuario(Usuario usuario);
 }

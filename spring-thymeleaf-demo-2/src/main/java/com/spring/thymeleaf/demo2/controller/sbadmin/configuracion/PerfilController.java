@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.spring.thymeleaf.demo2.domain.Usuario;
 import com.spring.thymeleaf.demo2.service.PersonaService;
 import com.spring.thymeleaf.demo2.service.UsuarioService;
-import com.spring.thymeleaf.demo2.util.MensajeUtil;
+//import com.spring.thymeleaf.demo2.util.MensajeUtil;
 import com.spring.thymeleaf.demo2.util.SeguridadUtil;
 import com.spring.thymeleaf.demo2.util.ValidacionUtil;
 import com.spring.thymeleaf.demo2.util.validation.UsuarioValidator;
@@ -34,7 +34,7 @@ public class PerfilController {
 	@InitBinder
 	public void initBinder(WebDataBinder binder){
 		binder.addValidators(usuarioValidator);
-		binder.addCustomFormatter(new DateFormatter(MensajeUtil.getMensaje("formato.fecha")));
+//		binder.addCustomFormatter(new DateFormatter(MensajeUtil.getMensaje("formato.fecha")));
 	}
 	
 	@Autowired

@@ -17,7 +17,7 @@ import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
 @Table(name = "Persona")
-public class Persona {
+public class Persona extends Entidad{
 
 	private Integer idPersona;
 	private String uuid;
@@ -95,7 +95,6 @@ public class Persona {
 		this.fechaNacimiento = fechaNacimiento;
 	}
 	
-	@NotEmpty
 	@Size(max = 30)
 	public String getDocumento() {
 		return documento;

@@ -5,6 +5,7 @@ import java.util.UUID;
 import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.core.annotation.Order;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
@@ -14,6 +15,7 @@ import com.spring.thymeleaf.demo2.repository.PersonaRepository;
 import com.spring.thymeleaf.demo2.repository.UsuarioRepository;
 
 @Component
+@Order(2)
 public class IniciarDataUsuario implements CommandLineRunner {
 	
 	private PasswordEncoder encoder;

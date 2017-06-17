@@ -30,6 +30,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 			.authorizeRequests()
 				.antMatchers("/login*")
 					.anonymous()
+				.antMatchers("/register*")
+					.anonymous()
 				.antMatchers("/sbadmin/**")
 					.authenticated()
 			.and()

@@ -6,5 +6,7 @@ public interface UsuarioService {
 
 	public Usuario obtenerPorId(String idUsuario);
 	
+	public Usuario crearUsuario(Usuario usuario);
+	
 	public Usuario actualizarUsuario(Usuario usuario);
 }

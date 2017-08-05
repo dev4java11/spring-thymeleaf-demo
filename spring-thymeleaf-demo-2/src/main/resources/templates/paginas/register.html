@@ -61,13 +61,13 @@
                                 		<p th:if="${#fields.hasErrors('persona.email')}" th:errors="*{persona.email}">Email incorrecto</p>
                                 	</div>
 	                            </div>
-								<div class="form-group">
+								<div class="form-group" th:classappend="${#fields.hasErrors('usuario') ? 'has-error': ''}">
 									<label for="itUsuario" th:text="#{registro.usuario.usuario}" class="col-lg-3 control-label" >Usuario:</label>
 									<div class="col-lg-5">
 										<input id="itUsuario" type="text" class="form-control" th:field="*{usuario}"/>
 									</div>
                                 	<div class="col-lg-4">
-                                		<p th:if="${#fields.hasErrors('usuario.usuario')}" th:errors="*{usuario}">Usuario incorrecto</p>	
+                                		<p th:if="${#fields.hasErrors('usuario')}" th:errors="*{usuario}">Usuario incorrecto</p>	
                                 	</div>
 								</div>
 								<div class="form-group" th:classappend="${#fields.hasErrors('clave') ? 'has-error': ''}">
@@ -84,10 +84,31 @@
 					</div>
 				</div>
 			</div>
+			<div class="col-lg-4 col-lg-offset-7">
+				<div class="row">
+					<div class="col-lg-6">
+						<input type="submit" th:value="#{registro.panel.guardar}" value="Guardar" class="btn btn-primary btn-block" />
+					</div>
+					<div class="col-lg-6">
+						<a th:href="@{/login}" th:text="#{registro.panel.cancelar}" class="btn btn-default btn-block">Cancelar</a>
+					</div>
+				</div>
+			</div>
 		</form>
 	</div>
 	
 	<div layout:fragment="scripts">
-	
+		<script th:inline="javascript">
+			/*<![CDATA[*/
+				
+			/*]]>*/
+		</script>
+		
+		<script type="text/javascript">
+			$(document).ready(function(){
+				inicializarComponentSelect();
+			});
+		</script>
 	</div>
+	
 </html>

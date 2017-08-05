@@ -13,6 +13,7 @@ import com.spring.thymeleaf.demo2.domain.Usuario;
 import com.spring.thymeleaf.demo2.repository.PersonaRepository;
 import com.spring.thymeleaf.demo2.repository.UsuarioRepository;
 import com.spring.thymeleaf.demo2.service.UsuarioService;
+import com.spring.thymeleaf.demo2.util.exception.UsuarioExisteException;
 
 @Service
 @Transactional(readOnly = true)
@@ -47,6 +48,25 @@ public class UsuarioServiceImpl implements UsuarioService {
 	@Override
 	public Usuario obtenerPorId(String idUsuario) {
 		return usuarioRepository.findOne(idUsuario);
+	}
+	
+	@Transactional(readOnly = false)
+	@Override
+	public Usuario crearUsuario(Usuario usuario) {
+		Usuario usuarioDB = usuarioRepository.findOne(usuario.getUsuario());
+		if(usuarioDB != null){
+			throw new UsuarioExisteException(usuario.getUsuario());
+		}
+		
+		Persona persona = usuario.getPersona();
+		persona = personaRepository.save(persona);
+		
+		String claveEncriptada = passwordEncoder.encode(usuario.getClave());
+		usuario.setClave(claveEncriptada);
+		
+		usuario = usuarioRepository.save(usuario);
+		
+		return usuario;
 	}
 
 	@Transactional(readOnly = false)

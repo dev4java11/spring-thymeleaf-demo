@@ -64,12 +64,14 @@ public class LoginController {
 	}
 	
 	@PostMapping("register")
-	public String register(@ModelAttribute("usuario")Usuario usuario, BindingResult bindingResult, Model model){
+	public String register(@ModelAttribute("usuario") Usuario usuario, BindingResult bindingResult, Model model){
 		usuarioValidator.validate(usuario, bindingResult);
 		if(bindingResult.hasErrors()){
 			model.addAttribute("usuario", usuario);
 			return "register";
 		}
+		
+		
 		
 		return "register";
 	}

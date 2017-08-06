@@ -13,6 +13,8 @@ import com.spring.thymeleaf.demo2.domain.Usuario;
 import com.spring.thymeleaf.demo2.repository.PersonaRepository;
 import com.spring.thymeleaf.demo2.repository.UsuarioRepository;
 import com.spring.thymeleaf.demo2.service.UsuarioService;
+import com.spring.thymeleaf.demo2.util.AplicacionUtil;
+import com.spring.thymeleaf.demo2.util.Constantes;
 import com.spring.thymeleaf.demo2.util.exception.UsuarioExisteException;
 
 @Service
@@ -55,14 +57,18 @@ public class UsuarioServiceImpl implements UsuarioService {
 	public Usuario crearUsuario(Usuario usuario) {
 		Usuario usuarioDB = usuarioRepository.findOne(usuario.getUsuario());
 		if(usuarioDB != null){
-			throw new UsuarioExisteException(usuario.getUsuario());
+			throw new UsuarioExisteException(usuario);
 		}
 		
 		Persona persona = usuario.getPersona();
+		persona.setUuid(AplicacionUtil.newUUID());
 		persona = personaRepository.save(persona);
 		
 		String claveEncriptada = passwordEncoder.encode(usuario.getClave());
 		usuario.setClave(claveEncriptada);
+		usuario.setUuid(AplicacionUtil.newUUID());
+		usuario.setEstado(Constantes.USUARIO_ESTADO_ACTIVO);
+		usuario.setIdPersona(persona.getIdPersona());
 		
 		usuario = usuarioRepository.save(usuario);
 		

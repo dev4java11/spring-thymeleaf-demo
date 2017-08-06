@@ -40,9 +40,22 @@
 	</div>
 	
 	<div layout:fragment="scripts">
+		<script th:inline="javascript">
+			/*<![CDATA[*/
+				function mostrarMensajeRegistro(){
+					var mensaje = [[${mensajeRegistro}]];
+					if(mensaje){
+						printInfoMessage([[#{notificador.titulo}]], mensaje);
+					}
+				}
+			/*]]>*/	
+		</script>
+	
 		<script type="text/javascript">
 			$(document).ready(function (){
 				notificarErrorLogin();
+				mostrarMensajeRegistro();
+				
 			});
 			
 			$('#formLogin').submit(function (event){

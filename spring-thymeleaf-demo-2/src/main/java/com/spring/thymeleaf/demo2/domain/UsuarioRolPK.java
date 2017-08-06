@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
+import javax.persistence.Id;
 
 @Embeddable
 public class UsuarioRolPK implements Serializable{
@@ -22,7 +23,8 @@ public class UsuarioRolPK implements Serializable{
 		this.rol = rol;
 	}
 	
-	@Column(name = "usuario")
+	@Id
+	@Column(name = "usuario", length = 20)
 	public String getUsuario() {
 		return usuario;
 	}
@@ -31,6 +33,7 @@ public class UsuarioRolPK implements Serializable{
 		this.usuario = usuario;
 	}
 	
+	@Id
 	@Column(name = "rol")
 	public String getRol() {
 		return rol;

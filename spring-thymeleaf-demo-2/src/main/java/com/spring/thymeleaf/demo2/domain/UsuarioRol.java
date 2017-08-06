@@ -7,6 +7,7 @@ import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.MapsId;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -17,9 +18,6 @@ public class UsuarioRol extends Entidad {
 	@EmbeddedId
 	private UsuarioRolPK id;
 	private Date fechaAsignacion;
-	
-//	private Usuario usuarioEntidad;
-//	private Rol rolEntidad;
 	
 	public UsuarioRol() {
 		id = new UsuarioRolPK();
@@ -41,24 +39,5 @@ public class UsuarioRol extends Entidad {
 	public void setFechaAsignacion(Date fechaAsignacion) {
 		this.fechaAsignacion = fechaAsignacion;
 	}
-	
-//	@ManyToOne
-//	@JoinColumn(name = "usuario", referencedColumnName = "usuario", nullable = false, insertable = false, updatable = false)
-//	public Usuario getUsuarioEntidad() {
-//		return usuarioEntidad;
-//	}
-//	
-//	public void setUsuarioEntidad(Usuario usuarioEntidad) {
-//		this.usuarioEntidad = usuarioEntidad;
-//	}
-	
-//	@OneToOne
-//	@JoinColumn(name = "rol", referencedColumnName = "rol", nullable = false, insertable = false, updatable = false)
-//	public Rol getRol() {
-//		return rol;
-//	}
-//	
-//	public void setRol(Rol rol) {
-//		this.rol = rol;
-//	}
+
 }

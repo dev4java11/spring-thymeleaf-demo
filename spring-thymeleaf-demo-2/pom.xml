@@ -117,14 +117,13 @@
 <!-- 		              <goal>process</goal> -->
 <!-- 		            </goals> -->
 <!-- 		            <configuration> -->
-<!-- 		              <outputDirectory>target/generated-sources/java</outputDirectory> -->
-<!-- 		              <processor>com.querydsl.apt.jpa.JPAAnnotationProcessor</processor> -->
+<!-- 		            	<outputDirectory>target/querydsl/java</outputDirectory> -->
+<!-- 		              	<processor>com.querydsl.apt.jpa.JPAAnnotationProcessor</processor> -->
 <!-- 		            </configuration> -->
 <!-- 		          </execution> -->
 <!-- 		        </executions> -->
 <!-- 			</plugin> -->
 		</plugins>
 	</build>
-
 
 </project>

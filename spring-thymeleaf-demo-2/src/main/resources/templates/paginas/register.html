@@ -3,8 +3,8 @@
 	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 	  layout:decorator="template/layout">
 	
-	<div layout:fragment="content">
-		<form action="#" role="form" th:action="@{/register}" method="post" class="form-horizontal" th:object="${usuario}">
+	<div layout:fragment="content" style="margin-top: 5%; margin-bottom: 5%;">
+		<form id="formCrearUsuario" action="#" role="form" th:action="@{/register}" method="post" class="form-horizontal" th:object="${usuario}">
 			<div class="col-lg-10 col-lg-offset-1">
 				<div class="panel panel-default">
 					<div class="panel-heading">
@@ -52,6 +52,20 @@
                                 		<p th:if="${#fields.hasErrors('persona.genero')}" th:errors="*{persona.genero}">Genero incorrecto</p>
                                 	</div>
 	                            </div>
+	                           	<div class="form-group" th:classappend="${#fields.hasErrors('persona.fechaNacimiento') ? 'has-error': ''}">
+	                            	<label for="itFechaNacimiento" class="col-lg-3 control-label" th:text="#{registro.usuario.persona.fecha.nacimiento}">Fecha de Nacimiento:</label>
+	                               	<div class="col-lg-5">
+	                                	<div id="itFechaNacimiento" class="input-group datetimepicker">
+		                                	<input type="datetime" class="form-control" th:field="*{persona.fechaNacimiento}"/>
+		                                	<span class="input-group-addon">
+		                                		<span class="fa fa-calendar"></span>
+		                                	</span>
+	                                	</div>
+	                                </div>
+	                                <div class="col-lg-4">
+                                		<p th:if="${#fields.hasErrors('persona.genero')}" th:errors="*{persona.genero}">Genero incorrecto</p>
+                                	</div>
+	                            </div>
 	                           	<div class="form-group" th:classappend="${#fields.hasErrors('persona.email') ? 'has-error': ''}">
 	                            	<label for="itEmail" class="col-lg-3 control-label" th:text="#{registro.usuario.persona.email}"> Documento de Identidad:</label>
 	                               	<div class="col-lg-5">
@@ -60,6 +74,15 @@
 	                                <div class="col-lg-4">
                                 		<p th:if="${#fields.hasErrors('persona.email')}" th:errors="*{persona.email}">Email incorrecto</p>
                                 	</div>
+	                            </div>
+	                            <div class="form-group" th:classappend="${#fields.hasErrors('persona.documento') ? 'has-error': ''}">
+	                            	<label for="itDocumento" class="col-lg-3 control-label" th:text="#{registro.usuario.persona.documento}"> Documento de Identidad:</label>
+	                                <div class="col-lg-5">
+	                                	<input type="text" class="form-control" id="itDocumento" th:field="*{persona.documento}"  />
+	                               	</div>
+	                               	<div class="col-lg-4">
+                                		<p th:if="${#fields.hasErrors('persona.documento')}" th:errors="*{persona.documento}">Documento incorrecto</p>
+                               		</div>
 	                            </div>
 								<div class="form-group" th:classappend="${#fields.hasErrors('usuario') ? 'has-error': ''}">
 									<label for="itUsuario" th:text="#{registro.usuario.usuario}" class="col-lg-3 control-label" >Usuario:</label>
@@ -100,14 +123,45 @@
 	<div layout:fragment="scripts">
 		<script th:inline="javascript">
 			/*<![CDATA[*/
+				var $dt = null;
 				
+				$(document).ready(function (){
+					inicializarComponentSelect();
+					$dt = inicializarComponentDatetimePicker([[${#locale.language}]], [[#{formato.fecha.momentjs}]]);
+					
+					var date = moment([[${usuario.persona.fechaNacimiento}]]);
+					setDataDateTimePicker($dt, date);
+					
+					var mensaje = [[${msjError}]];
+					mostrarMensaje(mensaje);
+				});
+			
+				$('#formCrearUsuario').submit(function (event){
+					var $form = $(this);
+					submitPostForm(event, $form, true, successResponse(), errorResponse(), null);
+				});
+				
+				function errorResponse(){
+					printErrorMessage([[#{notificador.titulo}]], [[#{mensaje.crear.usuario.error}]]);
+				}
+				
+				function successResponse(response){
+					refresh(response);
+					console.log(response);
+// 					printInfoMessage([[#{notificador.titulo}]], [[#{mensaje.crear.usuario.correcto}]]);
+				}
+				
+				function mostrarMensaje(mensaje){
+					if(mensaje){
+						printErrorMessage([[#{notificador.titulo}]], mensaje);
+					}
+				}
+			
 			/*]]>*/
 		</script>
 		
 		<script type="text/javascript">
-			$(document).ready(function(){
-				inicializarComponentSelect();
-			});
+			
 		</script>
 	</div>
 	

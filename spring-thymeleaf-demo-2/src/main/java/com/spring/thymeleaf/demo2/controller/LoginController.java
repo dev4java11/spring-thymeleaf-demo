@@ -78,7 +78,7 @@ public class LoginController {
 			return "register";
 		}
 		
-		usuario = usuarioService.crearUsuario(usuario);
+		usuario = usuarioService.registrarUsuarioConRol(usuario, Constantes.ROL_ESTUDIANTE);
 		redirectAttributes.addAttribute("idUsuario", usuario.getUsuario());
 		redirectAttributes.addFlashAttribute("mensajeRegistro", MensajeUtil.getMensaje("mensaje.crear.usuario.correcto"));
 		return "redirect:login";

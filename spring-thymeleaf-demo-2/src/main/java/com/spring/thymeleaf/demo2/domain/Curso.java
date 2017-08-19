@@ -17,17 +17,11 @@ public class Curso extends Entidad {
 	private String nombre;
 	private String descripcion;
 	private String uuid;
+	private String urlImagen;
+	private String precio;
 	
 	public Curso() {
 		// TODO Auto-generated constructor stub
-	}
-	
-	public Curso(Long idCurso, String nombre, String descripcion, String uuid) {
-		super();
-		this.idCurso = idCurso;
-		this.nombre = nombre;
-		this.descripcion = descripcion;
-		this.uuid = uuid;
 	}
 	
 	@Id
@@ -56,7 +50,8 @@ public class Curso extends Entidad {
 		this.descripcion = descripcion;
 	}
 	
-	
+	@NotEmpty
+	@Column(name = "uuid", length = 255)
 	public String getUuid() {
 		return uuid;
 	}

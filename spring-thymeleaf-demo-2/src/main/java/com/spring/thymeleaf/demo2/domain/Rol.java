@@ -17,7 +17,7 @@ public class Rol extends Entidad{
 	private String uuid;
 	
 	@Id
-	@Column(name = "rol")
+	@Column(name = "rol", length = 30)
 	public String getRol() {
 		return rol;
 	}

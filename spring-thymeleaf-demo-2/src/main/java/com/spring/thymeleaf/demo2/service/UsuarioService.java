@@ -9,4 +9,6 @@ public interface UsuarioService {
 	public Usuario crearUsuario(Usuario usuario);
 	
 	public Usuario actualizarUsuario(Usuario usuario);
+	
+	public Usuario registrarUsuarioConRol(Usuario usuario, String idRol);
 }

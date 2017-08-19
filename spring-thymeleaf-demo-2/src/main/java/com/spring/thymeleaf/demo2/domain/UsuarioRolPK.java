@@ -34,7 +34,7 @@ public class UsuarioRolPK implements Serializable{
 	}
 	
 	@Id
-	@Column(name = "rol")
+	@Column(name = "rol", length = 30)
 	public String getRol() {
 		return rol;
 	}

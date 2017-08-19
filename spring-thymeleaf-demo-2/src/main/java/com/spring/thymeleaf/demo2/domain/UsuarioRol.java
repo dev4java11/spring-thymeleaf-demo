@@ -10,6 +10,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.MapsId;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "UsuarioRol")
@@ -18,6 +19,7 @@ public class UsuarioRol extends Entidad {
 	@EmbeddedId
 	private UsuarioRolPK id;
 	private Date fechaAsignacion;
+	private String uuid;
 	
 	public UsuarioRol() {
 		id = new UsuarioRolPK();
@@ -40,4 +42,25 @@ public class UsuarioRol extends Entidad {
 		this.fechaAsignacion = fechaAsignacion;
 	}
 
+	@NotNull
+	public String getUuid() {
+		return uuid;
+	}
+	
+	public void setUuid(String uuid) {
+		this.uuid = uuid;
+	}
+	
+	@OneToOne
+	@JoinColumn(name = "rol", insertable = false, updatable = false, nullable = false)
+	private Rol rol;
+	
+	public Rol getRol() {
+		return rol;
+	}
+	
+	public void setRol(Rol rol) {
+		this.rol = rol;
+	}
+	
 }

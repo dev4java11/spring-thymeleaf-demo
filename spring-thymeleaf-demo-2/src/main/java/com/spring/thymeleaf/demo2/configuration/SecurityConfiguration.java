@@ -5,6 +5,7 @@ import javax.sql.DataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -56,12 +57,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 	@Autowired
 	public void configureGlobal(AuthenticationManagerBuilder builder) throws Exception {
 		builder
-//			.jdbcAuthentication()
-//				.passwordEncoder(passwordEncoder())
-//				.dataSource(getApplicationContext().getBean(DataSource.class))
-//					.usersByUsernameQuery("SELECT usuario, clave, estado FROM USUARIO where usuario = ?");
-			.inMemoryAuthentication()
-				.withUser("admin").password("1").authorities("ADMINISTRADOR");
+			.authenticationProvider(getApplicationContext().getBean(AuthenticationProvider.class));
 	}
 	
 	

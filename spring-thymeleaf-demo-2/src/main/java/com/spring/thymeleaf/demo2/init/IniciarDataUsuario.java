@@ -13,6 +13,8 @@ import com.spring.thymeleaf.demo2.domain.Persona;
 import com.spring.thymeleaf.demo2.domain.Usuario;
 import com.spring.thymeleaf.demo2.repository.PersonaRepository;
 import com.spring.thymeleaf.demo2.repository.UsuarioRepository;
+import com.spring.thymeleaf.demo2.service.UsuarioService;
+import com.spring.thymeleaf.demo2.util.Constantes;
 
 @Component
 @Order(2)
@@ -23,6 +25,8 @@ public class IniciarDataUsuario implements CommandLineRunner {
 	private UsuarioRepository repository;
 	
 	private PersonaRepository personaRepository;
+	
+	private UsuarioService usuarioService;
 	
 	
 	@Autowired
@@ -39,6 +43,11 @@ public class IniciarDataUsuario implements CommandLineRunner {
 	public void setPersonaRepository(PersonaRepository personaRepository) {
 		this.personaRepository = personaRepository;
 	}
+	
+	@Autowired
+	public void setUsuarioService(UsuarioService usuarioService) {
+		this.usuarioService = usuarioService;
+	}
 
 	@Override
 	public void run(String... args) throws Exception {
@@ -52,15 +61,19 @@ public class IniciarDataUsuario implements CommandLineRunner {
 		persona1.setDocumento("72617278");
 		persona1.setEmail("hrosasnutz.1991@gmail.com");
 		
-		persona1 = personaRepository.save(persona1);
+//		persona1 = personaRepository.save(persona1);
 		
 		
 		Usuario admin = new Usuario();
 		admin.setUsuario("admin");
 		admin.setClave(encoder.encode("1"));
-		admin.setEstado(1);
+		admin.setEstado(Constantes.USUARIO_ESTADO_ACTIVO);
 		admin.setUuid(UUID.randomUUID().toString());
 		admin.setIdPersona(persona1.getIdPersona());
+		
+		admin.setPersona(persona1);
+		
+		admin = usuarioService.registrarUsuarioConRol(admin, Constantes.ROL_ADMINISTRADOR);
 //		
 //		Usuario usuario1 = new Usuario();
 //		usuario1.setUsuario("usuario1");
@@ -87,7 +100,7 @@ public class IniciarDataUsuario implements CommandLineRunner {
 //		usuario4.setIdPersona(4);
 		
 		
-		repository.save(admin);
+//		repository.save(admin);
 //		repository.save(usuario1);
 //		repository.save(usuario2);
 //		repository.save(usuario3);

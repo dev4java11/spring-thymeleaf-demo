@@ -2,6 +2,7 @@ package com.spring.thymeleaf.demo2;
 
 import org.junit.After;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,6 +32,7 @@ public class SpringThymeleafDemo2ApplicationTests {
 	}
 
 	@Test
+	@Ignore
 	public void contextLoads() {
 		Iterable<UsuarioRol> it = repository.findAll(QUsuarioRol.usuarioRol.id.usuario.eq("admin"));
 		if(ValidacionUtil.noEsVacio(it)){

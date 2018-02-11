@@ -31,15 +31,19 @@ public class CursoController {
 		Clase filtro = new Clase();
 		filtro.setConsulta("CONSULTA_DEFAULT");
 		filtro.setEstado(1);
+		filtro.setPageable(pageable);
 		
 		Page<Clase> page = claseService.listarPaginado(filtro);
+		model.addAttribute("page", page);
 		
 		return "sbadmin/curso/cursos";
 	}
 
 	@GetMapping("/filtro")
 	public String obtenerCursos(Model model, @ModelAttribute(name = "filtro") Clase filtro, @PageableDefault Pageable pageable){
+		filtro.setPageable(pageable);
 		Page<Clase> page = claseService.listarPaginado(filtro);
+		model.addAttribute("page", page);
 		return "sbadmin/curso/cursos";
 	}
 	
